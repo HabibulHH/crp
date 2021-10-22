@@ -1,19 +1,26 @@
-// let student = "hira hasan";
-// console.log(student);
+// This will be global window 
+function namePrinter(){
+console.log("This is ",this);
+}
+namePrinter();
 
-// function namePrinter(){
-// console.log("This is ",this);
-// }
-
-// namePrinter();
-
-// let person = function(){
-//     console.log(this);
-// }
-// let students= new person();
+// This will be person scope// 
+let person = function(){
+    console.log(this);
+}
+let students= new person();
 
 
-let Teacher = {
+function showMeSomeInformation (){
+ console.log(this);
+  let scopeArea = function(){
+      console.log(this);
+  }
+  scopeArea();
+}
+showMeSomeInformation();
+
+let Student = {
     name:"hira",
     age :233,
     marks : [1,2,2,3],
@@ -21,8 +28,8 @@ let Teacher = {
         console.log("scope is",this.name);
     },
     printInfo: function(){
-      this.marks.map(function(item){
-       console.log(this.name+" got: "+item);
+      this.marks.map(function(mark){
+       console.log(this.name+" got: "+ mark);
       });
     },
     printInfo_arrow: function(){
@@ -32,9 +39,10 @@ let Teacher = {
     }
 }
 
-Teacher.printName();
-Teacher.printInfo();
-Teacher.printInfo_arrow();
+Student.printName();
+Student.printInfo();
+Student.printInfo_arrow();
 // Because ‘this’, always references the owner of the function
 //  it is in, for this case — since it is now out of scope — 
 //  the window/global object.
+
